@@ -1,0 +1,83 @@
+/* Reset styles (optional) */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+
+.border-1 {
+    border: 1px solid red
+}
+
+.main-app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+  /* Container setup */
+.message-container {
+    display: flex;
+    flex-direction: column;  /* Aligns items vertically */
+    align-items: stretch;  /* Ensures all items stretch to the full width */
+}
+
+  /* Server div style */
+.server {
+    background-color: lightblue;
+    align-self: flex-start; /* Aligns to the left */
+    border-radius: 15px;
+    padding: 10px;
+    margin: 2px;
+}
+
+  /* Client div style */
+.client {
+    background-color: lightcoral;
+    align-self: flex-end; /* Aligns to the right */
+    border-radius: 15px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.message-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.top-half {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    flex: 1;
+    border: 1px solid red;
+    margin: 10px;
+    padding: 8px;
+    background-color: #f0f0f0; /* Light gray for sidebar */
+}
+
+.conversation-area {
+    flex: 4;
+    border: 1px solid red;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+
+}
+
+input {
+    height: 80px;
+    width: 50vw;
+}
+
+button {
+    height: 60px;
+    width: 100px;
+    margin-left: 10px;
+}

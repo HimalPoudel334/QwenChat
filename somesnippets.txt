@@ -1,0 +1,55 @@
+//for sidebar
+move |(index, _conversation)| {
+                        let convo_memo = Memo::new(move |_| {
+                            conversations
+                                .with(|convos| convos.get(index).map(|c| c.to_owned()).unwrap())
+                        });
+
+                        view! {
+                            <li on:click=move |_| handle_conversation_clicked(
+                                convo_memo.get().get_id(),
+                            )>{convo_memo.get().get_title().to_owned()}</li>
+                        }
+                    }
+
+
+
+//conversations 
+
+                    let:child
+                >
+                    <div class="message-container">
+                        {
+                            let message = child.1;
+                            let from_server = message.get_from_server();
+                            view! {
+                                <div class=move || {
+                                    if from_server { "border-1 server" } else { "border-1 client" }
+                                }>{message.get_content().to_owned()}</div>
+                            }
+                        }
+                    </div>
+                </For>
+
+//conversationarea memoized
+children=move |(index, _)| {
+                            let message_memo = Memo::new(move |_| {
+                                conversation
+                                    .with(|conv| {
+                                        conv.get_messages()
+                                            .get(index)
+                                            .map(|m| (m.get_content().to_owned(), m.get_from_server()))
+                                            .unwrap_or_else(|| ("".to_string(), false))
+                                    })
+                            });
+                            view! {
+                                <div class=move || {
+                                    if message_memo.get().1 {
+                                        "border-1 server"
+                                    } else {
+                                        "border-1 client"
+                                    }
+                                }>{message_memo.get().0.to_owned()}</div>
+                            }
+                        }
+
